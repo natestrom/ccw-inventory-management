@@ -499,49 +499,30 @@ export default {
   align-items: center;
   gap: 0.25rem;
 }
+.stat-change.positive { color: var(--color-success-600); }
+.stat-change.negative { color: var(--color-danger-600); }
 
-.stat-change.positive {
-  color: #059669;
-}
+.change-icon { font-weight: 700; font-size: 1rem; }
 
-.stat-change.negative {
-  color: #dc2626;
-}
+.chart-card { margin-bottom: 1.75rem; }
 
-.change-icon {
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.chart-card {
-  margin-bottom: 1.75rem;
-}
-
-.chart-legend {
-  display: flex;
-  gap: 1.5rem;
-  font-size: 0.875rem;
-}
+.chart-legend { display: flex; gap: 1.5rem; font-size: 0.875rem; }
 
 .legend-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #64748b;
+  color: var(--color-ink-muted);
 }
 
-.legend-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-}
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; }
 
-.legend-dot.procurement { background: #3b82f6; }
+.legend-dot.procurement { background: var(--color-info-500); }
 .legend-dot.operational { background: #8b5cf6; }
-.legend-dot.labor { background: #10b981; }
-.legend-dot.overhead { background: #f59e0b; }
-.legend-dot.revenue-color { background: #0f172a; }
-.legend-dot.cost-color { background: #ef4444; }
+.legend-dot.labor { background: var(--color-success-500); }
+.legend-dot.overhead { background: var(--color-warning-500); }
+.legend-dot.revenue-color { background: var(--color-ink); }
+.legend-dot.cost-color { background: var(--color-danger-500); }
 
 .stats-grid-finance {
   display: grid;
@@ -550,22 +531,14 @@ export default {
   margin-bottom: 2rem;
 }
 
-.revenue-card {
-  border-left: 4px solid #0f172a;
-}
-
-.cost-card {
-  border-left: 4px solid #ef4444;
-}
-
-.profit-card {
-  border-left: 4px solid #3b82f6;
-}
+.revenue-card::before { background: linear-gradient(90deg, var(--color-ink), var(--color-ink-muted)) !important; }
+.cost-card::before { background: linear-gradient(90deg, var(--color-danger-500), var(--color-danger-600)) !important; }
+.profit-card::before { background: linear-gradient(90deg, var(--color-info-500), var(--color-info-600)) !important; }
 
 .stat-meta {
   margin-top: 0.5rem;
-  font-size: 0.813rem;
-  color: #64748b;
+  font-size: 0.8125rem;
+  color: var(--color-ink-subtle);
 }
 
 .bar-group-revenue {
@@ -596,28 +569,14 @@ export default {
   min-height: 4px;
 }
 
-.revenue-bar {
-  background: #0f172a;
-}
+.revenue-bar { background: var(--color-ink); }
+.cost-bar { background: var(--color-danger-500); }
 
-.cost-bar {
-  background: #ef4444;
-}
+.revenue-bar:hover, .cost-bar:hover { opacity: 0.8; transform: scaleY(1.05); }
 
-.revenue-bar:hover, .cost-bar:hover {
-  opacity: 0.8;
-  transform: scaleY(1.05);
-}
+.chart-container { padding: 1.5rem 0; }
 
-.chart-container {
-  padding: 1.5rem 0;
-}
-
-.bar-chart {
-  display: flex;
-  gap: 1.5rem;
-  height: 350px;
-}
+.bar-chart { display: flex; gap: 1.5rem; height: 350px; }
 
 .y-axis {
   display: flex;
@@ -625,8 +584,8 @@ export default {
   justify-content: space-between;
   padding-right: 1rem;
   font-size: 0.75rem;
-  color: #94a3b8;
-  border-right: 1px solid #e2e8f0;
+  color: var(--color-ink-subtle);
+  border-right: 1px solid var(--color-line);
 }
 
 .chart-area {
@@ -657,9 +616,7 @@ export default {
   transition: opacity 0.2s ease;
 }
 
-.stacked-bar:hover {
-  opacity: 0.85;
-}
+.stacked-bar:hover { opacity: 0.85; }
 
 .bar-segment {
   width: 100%;
@@ -668,28 +625,21 @@ export default {
   display: block;
 }
 
-.bar-segment:first-child {
-  border-radius: 0 0 6px 6px;
-}
+.bar-segment:first-child { border-radius: 0 0 6px 6px; }
+.bar-segment:last-child { border-radius: 6px 6px 0 0; }
 
-.bar-segment:last-child {
-  border-radius: 6px 6px 0 0;
-}
-
-.bar-segment.procurement { background: #3b82f6; }
+.bar-segment.procurement { background: var(--color-info-500); }
 .bar-segment.operational { background: #8b5cf6; }
-.bar-segment.labor { background: #10b981; }
-.bar-segment.overhead { background: #f59e0b; }
+.bar-segment.labor { background: var(--color-success-500); }
+.bar-segment.overhead { background: var(--color-warning-500); }
 
-.bar-segment:hover {
-  opacity: 0.8;
-}
+.bar-segment:hover { opacity: 0.8; }
 
 .bar-label {
   margin-top: 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-ink-muted);
 }
 
 .two-column-grid {
@@ -698,91 +648,49 @@ export default {
   gap: 1.75rem;
 }
 
-.category-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+.category-list { display: flex; flex-direction: column; gap: 1.5rem; }
 
-.category-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.category-item { display: flex; flex-direction: column; gap: 0.5rem; }
 
-.category-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.category-info { display: flex; justify-content: space-between; align-items: center; }
 
-.category-name {
-  font-weight: 600;
-  color: #0f172a;
-}
+.category-name { font-weight: 600; color: var(--color-ink); }
 
-.category-amount {
-  font-weight: 700;
-  color: #2563eb;
-  font-size: 1.125rem;
-}
+.category-amount { font-weight: 700; color: var(--color-brand-600); font-size: 1.125rem; }
 
 .category-bar-container {
   width: 100%;
-  height: 8px;
-  background: #f1f5f9;
-  border-radius: 4px;
+  height: 6px;
+  background: var(--color-canvas-soft);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .category-bar {
   height: 100%;
-  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
-  border-radius: 4px;
+  background: linear-gradient(90deg, var(--color-brand-500), var(--color-brand-600));
+  border-radius: var(--radius-full);
   transition: width 0.6s ease;
 }
 
-.category-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.813rem;
-}
+.category-meta { display: flex; justify-content: space-between; font-size: 0.8125rem; }
 
-.percentage {
-  color: #64748b;
-}
+.percentage { color: var(--color-ink-subtle); }
 
-.change {
-  font-weight: 600;
-}
+.change { font-weight: 600; }
+.change.positive { color: var(--color-success-600); }
+.change.negative { color: var(--color-danger-600); }
 
-.change.positive {
-  color: #059669;
-}
+.transactions-card { display: flex; flex-direction: column; }
 
-.change.negative {
-  color: #dc2626;
-}
+.transactions-table-container { overflow-y: auto; max-height: 400px; }
 
-.transactions-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.transactions-table-container {
-  overflow-y: auto;
-  max-height: 400px;
-}
-
-.transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+.transactions-table { width: 100%; border-collapse: collapse; }
 
 .transactions-table thead {
   position: sticky;
   top: 0;
-  background: #f8fafc;
+  background: var(--color-canvas-soft);
   z-index: 1;
 }
 
@@ -790,63 +698,36 @@ export default {
   text-align: left;
   padding: 0.625rem 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--color-ink-subtle);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-line);
 }
 
-.transactions-table th.text-right {
-  text-align: right;
-}
+.transactions-table th.text-right { text-align: right; }
 
 .transactions-table td {
-  padding: 0.75rem 0.75rem;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-line);
   font-size: 0.875rem;
 }
 
-.transactions-table tbody tr {
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
-
-.transactions-table tbody tr:hover {
-  background: #f8fafc;
-}
-
-.transactions-table tbody tr.clickable-row:hover {
-  background: #eff6ff;
-}
+.transactions-table tbody tr { cursor: pointer; transition: background-color 0.15s ease; }
+.transactions-table tbody tr:hover { background: var(--color-canvas-soft); }
+.transactions-table tbody tr.clickable-row:hover { background: var(--color-brand-50); }
 
 .transaction-id {
-  color: #64748b;
+  color: var(--color-ink-subtle);
   font-weight: 500;
-  font-family: 'Monaco', 'Courier New', monospace;
-  font-size: 0.813rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
 }
 
-.transaction-description {
-  color: #0f172a;
-  font-weight: 500;
-}
+.transaction-description { color: var(--color-ink); font-weight: 500; }
+.transaction-vendor { color: var(--color-ink-muted); }
+.transaction-date { color: var(--color-ink-muted); font-size: 0.8125rem; }
+.transaction-amount { font-weight: 700; color: var(--color-ink); }
 
-.transaction-vendor {
-  color: #64748b;
-}
-
-.transaction-date {
-  color: #64748b;
-  font-size: 0.813rem;
-}
-
-.transaction-amount {
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.text-right {
-  text-align: right;
-}
+.text-right { text-align: right; }
 </style>

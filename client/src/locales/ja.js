@@ -278,6 +278,8 @@ export default {
   profile: {
     profileDetails: 'プロフィール詳細',
     myTasks: 'マイタスク',
+    toggleTheme: 'ダークモード',
+    toggleThemeLight: 'ライトモード',
     logout: 'ログアウト'
   },
 

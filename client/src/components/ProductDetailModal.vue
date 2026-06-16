@@ -132,204 +132,97 @@ const getStockBadgeClass = (stockLevel) => {
 
 <style scoped>
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  padding: 1rem;
+  position: fixed; inset: 0;
+  background: rgba(10, 37, 64, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000; padding: 1rem;
 }
 
 .modal-container {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  max-width: 700px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: var(--color-canvas);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 700px; width: 100%; max-height: 90vh;
+  overflow: hidden; display: flex; flex-direction: column;
 }
 
 .modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem; border-bottom: 1px solid var(--color-line);
 }
 
-.modal-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: -0.025em;
-}
+.modal-title { font-size: 1.25rem; font-weight: 700; color: var(--color-ink); letter-spacing: -0.025em; }
 
 .close-button {
-  background: none;
-  border: none;
-  color: #64748b;
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: all 0.15s ease;
+  background: none; border: none; color: var(--color-ink-subtle);
+  cursor: pointer; padding: 0.5rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); transition: all 0.15s ease;
 }
 
-.close-button:hover {
-  background: #f1f5f9;
-  color: #0f172a;
-}
+.close-button:hover { background: var(--color-canvas-soft); color: var(--color-ink); }
 
-.modal-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 2rem;
-}
+.modal-body { flex: 1; overflow-y: auto; padding: 2rem; }
 
 .product-header {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1.25rem;
+  padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-line); margin-bottom: 2rem;
 }
 
 .product-icon {
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--color-brand-500), var(--color-brand-700));
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  color: white; flex-shrink: 0;
 }
 
-.product-title-section {
-  flex: 1;
-  min-width: 0;
-}
+.product-title-section { flex: 1; min-width: 0; }
 
-.product-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 0.5rem 0;
-}
+.product-name { font-size: 1.5rem; font-weight: 700; color: var(--color-ink); margin: 0 0 0.5rem 0; }
 
-.product-sku {
-  font-size: 0.875rem;
-  color: #64748b;
-  font-family: 'Monaco', 'Courier New', monospace;
-}
+.product-sku { font-size: 0.875rem; color: var(--color-ink-subtle); font-family: var(--font-mono); }
 
 .stock-badge {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  flex-shrink: 0;
+  padding: 0.5rem 1rem; border-radius: var(--radius-md);
+  font-size: 0.875rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.025em; flex-shrink: 0;
 }
 
-.stock-badge.success {
-  background: #d1fae5;
-  color: #065f46;
-}
+.stock-badge.success { background: var(--color-success-50); color: var(--color-success-700); }
+.stock-badge.warning { background: var(--color-warning-50); color: var(--color-warning-700); }
+.stock-badge.danger { background: var(--color-danger-50); color: var(--color-danger-700); }
 
-.stock-badge.warning {
-  background: #fed7aa;
-  color: #92400e;
-}
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
 
-.stock-badge.danger {
-  background: #fecaca;
-  color: #991b1b;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.info-item { display: flex; flex-direction: column; gap: 0.5rem; }
 
 .info-label {
-  font-size: 0.813rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
+  font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--color-ink-subtle);
 }
 
-.info-value {
-  font-size: 0.938rem;
-  color: #0f172a;
-  font-weight: 500;
-}
+.info-value { font-size: 0.9375rem; color: var(--color-ink); font-weight: 500; }
 
 .modal-footer {
-  padding: 1.5rem;
-  border-top: 1px solid #e2e8f0;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
+  padding: 1.5rem; border-top: 1px solid var(--color-line);
+  display: flex; justify-content: flex-end; gap: 0.75rem;
 }
 
 .btn-secondary {
   padding: 0.625rem 1.25rem;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.875rem;
-  color: #334155;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: inherit;
+  background: var(--color-canvas-soft); border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  font-weight: 500; font-size: 0.875rem; color: var(--color-ink-muted);
+  cursor: pointer; transition: all 0.15s ease; font-family: inherit;
 }
 
-.btn-secondary:hover {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
-}
+.btn-secondary:hover { border-color: var(--color-line-strong); color: var(--color-ink); }
 
-/* Modal transition animations */
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-container {
-  transition: transform 0.2s ease;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  transform: scale(0.95);
-}
+.modal-enter-active, .modal-leave-active { transition: opacity 0.2s ease; }
+.modal-enter-from, .modal-leave-to { opacity: 0; }
+.modal-enter-active .modal-container, .modal-leave-active .modal-container { transition: transform 0.2s ease; }
+.modal-enter-from .modal-container, .modal-leave-to .modal-container { transform: scale(0.95); }
 </style>
