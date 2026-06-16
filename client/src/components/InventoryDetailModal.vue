@@ -7,7 +7,12 @@
             <h3 class="modal-title">Inventory Item Details</h3>
             <button class="close-button" @click="close">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path
+                  d="M15 5L5 15M5 5L15 15"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
               </svg>
             </button>
           </div>
@@ -16,13 +21,33 @@
             <div class="item-header">
               <div class="item-icon" :class="getStockIconClass()">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <rect x="8" y="12" width="32" height="28" rx="2" stroke="currentColor" stroke-width="2.5"/>
-                  <path d="M16 8V16M32 8V16M8 20H40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                  <path d="M16 28H32M16 34H24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                  <rect
+                    x="8"
+                    y="12"
+                    width="32"
+                    height="28"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  />
+                  <path
+                    d="M16 8V16M32 8V16M8 20H40"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M16 28H32M16 34H24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  />
                 </svg>
               </div>
               <div class="item-title-section">
-                <h4 class="item-name">{{ translateProductName(inventoryItem.name) }}</h4>
+                <h4 class="item-name">
+                  {{ translateProductName(inventoryItem.name) }}
+                </h4>
                 <div class="item-sku">SKU: {{ inventoryItem.sku }}</div>
               </div>
               <span class="stock-badge" :class="getStockStatusClass()">
@@ -33,7 +58,9 @@
             <div class="stock-summary">
               <div class="summary-card primary">
                 <div class="summary-label">Quantity on Hand</div>
-                <div class="summary-value">{{ inventoryItem.quantity_on_hand }} units</div>
+                <div class="summary-value">
+                  {{ inventoryItem.quantity_on_hand }} units
+                </div>
               </div>
               <div class="summary-card" :class="getSummaryCardClass()">
                 <div class="summary-label">Stock Level</div>
@@ -55,33 +82,57 @@
 
               <div class="info-item">
                 <div class="info-label">Reorder Point</div>
-                <div class="info-value">{{ inventoryItem.reorder_point }} units</div>
+                <div class="info-value">
+                  {{ inventoryItem.reorder_point }} units
+                </div>
               </div>
 
               <div class="info-item">
                 <div class="info-label">Units Remaining</div>
                 <div class="info-value">
-                  <span :style="{ color: inventoryItem.quantity_on_hand <= inventoryItem.reorder_point ? 'var(--color-danger-500)' : 'var(--color-success-500)' }">
-                    {{ inventoryItem.quantity_on_hand - inventoryItem.reorder_point }} units
+                  <span
+                    :style="{
+                      color:
+                        inventoryItem.quantity_on_hand <=
+                        inventoryItem.reorder_point
+                          ? 'var(--color-danger-500)'
+                          : 'var(--color-success-500)',
+                    }"
+                  >
+                    {{
+                      inventoryItem.quantity_on_hand -
+                      inventoryItem.reorder_point
+                    }}
+                    units
                   </span>
                 </div>
               </div>
 
               <div class="info-item">
                 <div class="info-label">Unit Cost</div>
-                <div class="info-value">{{ currencySymbol }}{{ inventoryItem.unit_cost.toFixed(2) }}</div>
+                <div class="info-value">
+                  {{ currencySymbol }}{{ inventoryItem.unit_cost.toFixed(2) }}
+                </div>
               </div>
 
               <div class="info-item">
                 <div class="info-label">Total Value</div>
                 <div class="info-value total-value">
-                  {{ currencySymbol }}{{ totalValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}
+                  {{ currencySymbol
+                  }}{{
+                    totalValue.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })
+                  }}
                 </div>
               </div>
 
               <div class="info-item">
                 <div class="info-label">Warehouse</div>
-                <div class="info-value">{{ translateWarehouse(inventoryItem.location) }}</div>
+                <div class="info-value">
+                  {{ translateWarehouse(inventoryItem.location) }}
+                </div>
               </div>
 
               <div class="info-item">
@@ -105,82 +156,94 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useI18n } from '../composables/useI18n'
+import { computed } from "vue";
+import { useI18n } from "../composables/useI18n";
 
-const { currentCurrency, translateProductName, translateWarehouse } = useI18n()
+const { currentCurrency, translateProductName, translateWarehouse } = useI18n();
 
 const currencySymbol = computed(() => {
-  return currentCurrency.value === 'JPY' ? '¥' : '$'
-})
+  return currentCurrency.value === "JPY" ? "¥" : "$";
+});
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
-    default: false
+    default: false,
   },
   inventoryItem: {
     type: Object,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close"]);
 
 const totalValue = computed(() => {
-  if (!props.inventoryItem) return 0
-  return props.inventoryItem.quantity_on_hand * props.inventoryItem.unit_cost
-})
+  if (!props.inventoryItem) return 0;
+  return props.inventoryItem.quantity_on_hand * props.inventoryItem.unit_cost;
+});
 
 const stockPercentage = computed(() => {
-  if (!props.inventoryItem || props.inventoryItem.reorder_point === 0) return 0
-  return Math.round((props.inventoryItem.quantity_on_hand / props.inventoryItem.reorder_point) * 100)
-})
+  if (!props.inventoryItem || props.inventoryItem.reorder_point === 0) return 0;
+  return Math.round(
+    (props.inventoryItem.quantity_on_hand / props.inventoryItem.reorder_point) *
+      100,
+  );
+});
 
 const close = () => {
-  emit('close')
-}
+  emit("close");
+};
 
 const getStockStatus = () => {
-  if (!props.inventoryItem) return 'Unknown'
-  if (props.inventoryItem.quantity_on_hand <= props.inventoryItem.reorder_point) {
-    return 'Low Stock'
-  } else if (props.inventoryItem.quantity_on_hand <= props.inventoryItem.reorder_point * 1.5) {
-    return 'Adequate'
+  if (!props.inventoryItem) return "Unknown";
+  if (
+    props.inventoryItem.quantity_on_hand <= props.inventoryItem.reorder_point
+  ) {
+    return "Low Stock";
+  } else if (
+    props.inventoryItem.quantity_on_hand <=
+    props.inventoryItem.reorder_point * 1.5
+  ) {
+    return "Adequate";
   } else {
-    return 'In Stock'
+    return "In Stock";
   }
-}
+};
 
 const getStockStatusClass = () => {
-  const status = getStockStatus()
-  if (status === 'Low Stock') return 'danger'
-  if (status === 'Adequate') return 'warning'
-  return 'success'
-}
+  const status = getStockStatus();
+  if (status === "Low Stock") return "danger";
+  if (status === "Adequate") return "warning";
+  return "success";
+};
 
 const getStockIconClass = () => {
-  const status = getStockStatus()
-  if (status === 'Low Stock') return 'danger-icon'
-  if (status === 'Adequate') return 'warning-icon'
-  return 'success-icon'
-}
+  const status = getStockStatus();
+  if (status === "Low Stock") return "danger-icon";
+  if (status === "Adequate") return "warning-icon";
+  return "success-icon";
+};
 
 const getSummaryCardClass = () => {
-  const status = getStockStatus()
-  if (status === 'Low Stock') return 'danger-card'
-  if (status === 'Adequate') return 'warning-card'
-  return 'success-card'
-}
+  const status = getStockStatus();
+  if (status === "Low Stock") return "danger-card";
+  if (status === "Adequate") return "warning-card";
+  return "success-card";
+};
 </script>
 
 <style scoped>
 .modal-overlay {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(10, 37, 64, 0.5);
   backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2000; padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
 }
 
 .modal-container {
@@ -188,105 +251,225 @@ const getSummaryCardClass = () => {
   border: 1px solid var(--color-line);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xl);
-  max-width: 700px; width: 100%; max-height: 90vh;
-  overflow: hidden; display: flex; flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-header {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1.5rem;
   border-bottom: 1px solid var(--color-line);
 }
 
 .modal-title {
-  font-size: 1.25rem; font-weight: 700;
-  color: var(--color-ink); letter-spacing: -0.025em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.025em;
 }
 
 .close-button {
-  background: none; border: none;
+  background: none;
+  border: none;
   color: var(--color-ink-subtle);
-  cursor: pointer; padding: 0.5rem;
-  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-md);
   transition: all 0.15s ease;
 }
 
-.close-button:hover { background: var(--color-canvas-soft); color: var(--color-ink); }
+.close-button:hover {
+  background: var(--color-canvas-soft);
+  color: var(--color-ink);
+}
 
-.modal-body { flex: 1; overflow-y: auto; padding: 2rem; }
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
 
 .item-header {
-  display: flex; align-items: center; gap: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-line);
   margin-bottom: 1.5rem;
 }
 
 .item-icon {
-  width: 64px; height: 64px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-lg);
-  display: flex; align-items: center; justify-content: center;
-  color: white; flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
 }
 
-.item-icon.success-icon { background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600)); }
-.item-icon.warning-icon { background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600)); }
-.item-icon.danger-icon { background: linear-gradient(135deg, var(--color-danger-500), var(--color-danger-600)); }
+.item-icon.success-icon {
+  background: linear-gradient(
+    135deg,
+    var(--color-success-500),
+    var(--color-success-600)
+  );
+}
+.item-icon.warning-icon {
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-500),
+    var(--color-warning-600)
+  );
+}
+.item-icon.danger-icon {
+  background: linear-gradient(
+    135deg,
+    var(--color-danger-500),
+    var(--color-danger-600)
+  );
+}
 
-.item-title-section { flex: 1; min-width: 0; }
+.item-title-section {
+  flex: 1;
+  min-width: 0;
+}
 
-.item-name { font-size: 1.5rem; font-weight: 700; color: var(--color-ink); margin: 0 0 0.5rem 0; }
+.item-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 0.5rem 0;
+}
 
-.item-sku { font-size: 0.875rem; color: var(--color-ink-subtle); font-family: var(--font-mono); }
+.item-sku {
+  font-size: 0.875rem;
+  color: var(--color-ink-subtle);
+  font-family: var(--font-mono);
+}
 
 .stock-badge {
-  padding: 0.5rem 1rem; border-radius: var(--radius-md);
-  font-size: 0.875rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.025em; flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  flex-shrink: 0;
 }
 
-.stock-badge.success { background: var(--color-success-50); color: var(--color-success-700); }
-.stock-badge.warning { background: var(--color-warning-50); color: var(--color-warning-700); }
-.stock-badge.danger { background: var(--color-danger-50); color: var(--color-danger-700); }
+.stock-badge.success {
+  background: var(--color-success-50);
+  color: var(--color-success-700);
+}
+.stock-badge.warning {
+  background: var(--color-warning-50);
+  color: var(--color-warning-700);
+}
+.stock-badge.danger {
+  background: var(--color-danger-50);
+  color: var(--color-danger-700);
+}
 
 .stock-summary {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1rem; margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.summary-card { padding: 1.25rem; border-radius: var(--radius-lg); border: 2px solid; }
+.summary-card {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid;
+}
 
-.summary-card.primary { border-color: var(--color-brand-100); background: var(--color-brand-50); }
-.summary-card.success-card { border-color: var(--color-success-100); background: var(--color-success-50); }
-.summary-card.warning-card { border-color: var(--color-warning-100); background: var(--color-warning-50); }
-.summary-card.danger-card { border-color: var(--color-danger-100); background: var(--color-danger-50); }
+.summary-card.primary {
+  border-color: var(--color-brand-100);
+  background: var(--color-brand-50);
+}
+.summary-card.success-card {
+  border-color: var(--color-success-100);
+  background: var(--color-success-50);
+}
+.summary-card.warning-card {
+  border-color: var(--color-warning-100);
+  background: var(--color-warning-50);
+}
+.summary-card.danger-card {
+  border-color: var(--color-danger-100);
+  background: var(--color-danger-50);
+}
 
 .summary-label {
-  font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--color-ink-subtle); margin-bottom: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-subtle);
+  margin-bottom: 0.5rem;
 }
 
-.summary-value { font-size: 1.875rem; font-weight: 700; color: var(--color-ink); }
+.summary-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
 
-.summary-subtitle { font-size: 0.75rem; color: var(--color-ink-subtle); margin-top: 0.25rem; }
+.summary-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-ink-subtle);
+  margin-top: 0.25rem;
+}
 
-.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
 
-.info-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
 .info-label {
-  font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.05em; color: var(--color-ink-subtle);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-subtle);
 }
 
-.info-value { font-size: 0.9375rem; color: var(--color-ink); font-weight: 500; }
+.info-value {
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  font-weight: 500;
+}
 
-.info-value.total-value { font-size: 1.125rem; color: var(--color-brand-600); font-weight: 700; }
+.info-value.total-value {
+  font-size: 1.125rem;
+  color: var(--color-brand-600);
+  font-weight: 700;
+}
 
 .modal-footer {
-  padding: 1.5rem; border-top: 1px solid var(--color-line);
-  display: flex; justify-content: flex-end; gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
 }
 
 .btn-secondary {
@@ -294,15 +477,34 @@ const getSummaryCardClass = () => {
   background: var(--color-canvas-soft);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  font-weight: 500; font-size: 0.875rem;
+  font-weight: 500;
+  font-size: 0.875rem;
   color: var(--color-ink-muted);
-  cursor: pointer; transition: all 0.15s ease; font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
 }
 
-.btn-secondary:hover { background: var(--color-canvas-soft); border-color: var(--color-line-strong); color: var(--color-ink); }
+.btn-secondary:hover {
+  background: var(--color-canvas-soft);
+  border-color: var(--color-line-strong);
+  color: var(--color-ink);
+}
 
-.modal-enter-active, .modal-leave-active { transition: opacity 0.2s ease; }
-.modal-enter-from, .modal-leave-to { opacity: 0; }
-.modal-enter-active .modal-container, .modal-leave-active .modal-container { transition: transform 0.2s ease; }
-.modal-enter-from .modal-container, .modal-leave-to .modal-container { transform: scale(0.95); }
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.2s ease;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+  transition: transform 0.2s ease;
+}
+.modal-enter-from .modal-container,
+.modal-leave-to .modal-container {
+  transform: scale(0.95);
+}
 </style>

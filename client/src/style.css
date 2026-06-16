@@ -65,9 +65,14 @@
 
   /* Shadows — layered Stripe-style */
   --shadow-xs: 0 1px 2px 0 rgba(10, 37, 64, 0.04);
-  --shadow-sm: 0 2px 4px -1px rgba(10, 37, 64, 0.06), 0 1px 2px -1px rgba(10, 37, 64, 0.04);
-  --shadow-md: 0 4px 12px -2px rgba(10, 37, 64, 0.08), 0 2px 4px -2px rgba(10, 37, 64, 0.04);
-  --shadow-lg: 0 12px 32px -4px rgba(10, 37, 64, 0.12), 0 4px 8px -2px rgba(10, 37, 64, 0.06);
+  --shadow-sm:
+    0 2px 4px -1px rgba(10, 37, 64, 0.06), 0 1px 2px -1px rgba(10, 37, 64, 0.04);
+  --shadow-md:
+    0 4px 12px -2px rgba(10, 37, 64, 0.08),
+    0 2px 4px -2px rgba(10, 37, 64, 0.04);
+  --shadow-lg:
+    0 12px 32px -4px rgba(10, 37, 64, 0.12),
+    0 4px 8px -2px rgba(10, 37, 64, 0.06);
   --shadow-xl: 0 24px 48px -12px rgba(10, 37, 64, 0.18);
 }
 
@@ -90,7 +95,9 @@
 
 /* ── Base reset & globals ── */
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -196,7 +203,7 @@
   }
 
   .nav-tabs a.active::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
     left: 0.5rem;
@@ -248,19 +255,25 @@
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-line);
     box-shadow: var(--shadow-xs);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
     position: relative;
     overflow: hidden;
   }
 
   .stat-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-brand-500), var(--color-brand-600));
+    background: linear-gradient(
+      90deg,
+      var(--color-brand-500),
+      var(--color-brand-600)
+    );
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
 
@@ -286,14 +299,46 @@
     line-height: 1;
   }
 
-  .stat-card.warning .stat-value { color: var(--color-warning-600); }
-  .stat-card.warning::before { background: linear-gradient(90deg, var(--color-warning-500), var(--color-warning-600)); }
-  .stat-card.success .stat-value { color: var(--color-success-600); }
-  .stat-card.success::before { background: linear-gradient(90deg, var(--color-success-500), var(--color-success-600)); }
-  .stat-card.danger .stat-value { color: var(--color-danger-600); }
-  .stat-card.danger::before { background: linear-gradient(90deg, var(--color-danger-500), var(--color-danger-600)); }
-  .stat-card.info .stat-value { color: var(--color-info-600); }
-  .stat-card.info::before { background: linear-gradient(90deg, var(--color-info-500), var(--color-info-600)); }
+  .stat-card.warning .stat-value {
+    color: var(--color-warning-600);
+  }
+  .stat-card.warning::before {
+    background: linear-gradient(
+      90deg,
+      var(--color-warning-500),
+      var(--color-warning-600)
+    );
+  }
+  .stat-card.success .stat-value {
+    color: var(--color-success-600);
+  }
+  .stat-card.success::before {
+    background: linear-gradient(
+      90deg,
+      var(--color-success-500),
+      var(--color-success-600)
+    );
+  }
+  .stat-card.danger .stat-value {
+    color: var(--color-danger-600);
+  }
+  .stat-card.danger::before {
+    background: linear-gradient(
+      90deg,
+      var(--color-danger-500),
+      var(--color-danger-600)
+    );
+  }
+  .stat-card.info .stat-value {
+    color: var(--color-info-600);
+  }
+  .stat-card.info::before {
+    background: linear-gradient(
+      90deg,
+      var(--color-info-500),
+      var(--color-info-600)
+    );
+  }
 
   /* Card */
   .card {
@@ -378,25 +423,31 @@
     white-space: nowrap;
   }
 
-  .badge.success, .badge.delivered, .badge.increasing {
+  .badge.success,
+  .badge.delivered,
+  .badge.increasing {
     background: var(--color-success-50);
     color: var(--color-success-700);
     border: 1px solid var(--color-success-100);
   }
 
-  .badge.warning, .badge.processing {
+  .badge.warning,
+  .badge.processing {
     background: var(--color-warning-50);
     color: var(--color-warning-700);
     border: 1px solid var(--color-warning-100);
   }
 
-  .badge.danger, .badge.backordered, .badge.decreasing {
+  .badge.danger,
+  .badge.backordered,
+  .badge.decreasing {
     background: var(--color-danger-50);
     color: var(--color-danger-700);
     border: 1px solid var(--color-danger-100);
   }
 
-  .badge.info, .badge.shipped {
+  .badge.info,
+  .badge.shipped {
     background: var(--color-info-50);
     color: var(--color-info-700);
     border: 1px solid var(--color-info-100);
@@ -450,7 +501,11 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, var(--color-brand-500) 0%, var(--color-brand-600) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-brand-500) 0%,
+      var(--color-brand-600) 100%
+    );
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -464,7 +519,11 @@
   }
 
   .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-brand-400) 0%, var(--color-brand-500) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-brand-400) 0%,
+      var(--color-brand-500) 100%
+    );
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
   }
@@ -494,7 +553,8 @@
   }
 
   /* Form inputs */
-  .input, .select {
+  .input,
+  .select {
     width: 100%;
     padding: 0.5rem 0.875rem;
     background: var(--color-canvas);
@@ -503,11 +563,14 @@
     font-size: 0.875rem;
     font-family: inherit;
     color: var(--color-ink);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
     outline: none;
   }
 
-  .input:focus, .select:focus {
+  .input:focus,
+  .select:focus {
     border-color: var(--color-brand-400);
     box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.12);
   }

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "task-001",
+    "title": "Audit San Francisco warehouse stock",
+    "priority": "high",
+    "dueDate": "2026-06-18",
+    "status": "pending"
+  },
+  {
+    "id": "task-002",
+    "title": "Review Q3 supplier contracts",
+    "priority": "medium",
+    "dueDate": "2026-06-22",
+    "status": "pending"
+  },
+  {
+    "id": "task-003",
+    "title": "Reconcile July spending categories",
+    "priority": "low",
+    "dueDate": "2026-07-05",
+    "status": "pending"
+  },
+  {
+    "id": "task-004",
+    "title": "Investigate Q4 fulfillment dropoff",
+    "priority": "high",
+    "dueDate": "2026-06-19",
+    "status": "pending"
+  },
+  {
+    "id": "task-005",
+    "title": "Update reorder points for Sensors category",
+    "priority": "medium",
+    "dueDate": "2026-06-25",
+    "status": "pending"
+  },
+  {
+    "id": "task-006",
+    "title": "Coordinate Tokyo→London transfer",
+    "priority": "medium",
+    "dueDate": "2026-07-01",
+    "status": "completed"
+  }
+]
