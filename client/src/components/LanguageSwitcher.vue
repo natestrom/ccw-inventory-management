@@ -97,24 +97,26 @@ const selectLanguage = (locale) => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.375rem 0.75rem;
+  background: var(--color-canvas);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   font-family: inherit;
   font-size: 0.875rem;
-  color: #334155;
+  color: var(--color-ink-muted);
+  box-shadow: var(--shadow-xs);
 }
 
 .language-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--color-canvas-soft);
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-sm);
 }
 
 .globe-icon {
-  color: #64748b;
+  color: var(--color-ink-subtle);
   flex-shrink: 0;
 }
 
@@ -123,7 +125,7 @@ const selectLanguage = (locale) => {
 }
 
 .chevron {
-  color: #64748b;
+  color: var(--color-ink-subtle);
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -137,10 +139,10 @@ const selectLanguage = (locale) => {
   top: calc(100% + 0.5rem);
   right: 0;
   min-width: 160px;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
   z-index: 1000;
   overflow: hidden;
 }
@@ -160,16 +162,17 @@ const selectLanguage = (locale) => {
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #334155;
+  color: var(--color-ink-muted);
 }
 
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--color-canvas-soft);
+  color: var(--color-ink);
 }
 
 .dropdown-item.active {
-  background: #eff6ff;
-  color: #2563eb;
+  background: var(--color-brand-50);
+  color: var(--color-brand-600);
 }
 
 .language-name {
@@ -177,7 +180,7 @@ const selectLanguage = (locale) => {
 }
 
 .check-icon {
-  color: #2563eb;
+  color: var(--color-brand-600);
   flex-shrink: 0;
 }
 </style>

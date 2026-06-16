@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Factory Inventory Management System Demo with GitHub integration - Full-stack application with Vue 3 frontend, Python FastAPI backend, and in-memory mock data (no database).
+Factory Inventory Management System Demo with GitHub integration - Full-stack application with Vue 3 frontend, Python FastAPI backend, and SQLite database.
 
 ## Critical Tool Usage Rules
 
@@ -26,16 +26,17 @@ Use the Task tool with these specialized subagents for appropriate tasks:
 ## Stack
 - **Frontend**: Vue 3 + Composition API + Vite (port 3000)
 - **Backend**: Python FastAPI (port 8001)
+- **Database**: SQLite
 - **Data**: JSON files in `server/data/` loaded via `server/mock_data.py`
 
 ## Quick Start
 
 ```bash
-# Backend
+# Backend (FastAPI on port 8001)
 cd server
 uv run python main.py
 
-# Frontend
+# Frontend (Vite on port 3000)
 cd client
 npm install && npm run dev
 ```
